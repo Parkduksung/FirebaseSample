@@ -101,7 +101,7 @@ class AddPhotoActivity : AppCompatActivity() {
                 //이미지 주소
                 contentDTO.imageUrl = it.toString()
                 //유저의 UID
-                contentDTO.uid = auth?.currentUser?.uid
+                contentDTO.uid = taskSnapshot.storage.name
                 //게시물의 설명
                 contentDTO.explain = binding.addphotoEditExplain.text.toString()
                 //유저의 아이디
@@ -111,6 +111,8 @@ class AddPhotoActivity : AppCompatActivity() {
 
                 //게시물을 데이터를 생성 및 엑티비티 종료
                 firestore?.collection("images")?.document()?.set(contentDTO)
+
+
 
                 setResult(Activity.RESULT_OK)
             }
@@ -137,7 +139,26 @@ class AddPhotoActivity : AppCompatActivity() {
         }
 
         photoAdapter.setItemClickListener {
-            Toast.makeText(this, it.imageUrl.toString(), Toast.LENGTH_SHORT).show()
+            storage?.reference?.child("images")?.child(it.uid!!)?.delete()
+                ?.addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        Toast.makeText(this, "삭제되었습니다.", Toast.LENGTH_SHORT).show()
+                    }
+                }
+
+            firestore?.collection("images")?.whereEqualTo("uid", it.uid)?.get()
+                ?.addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        for (dc in task.result!!.documents) {
+                            firestore?.document(dc.reference.path)?.delete()?.addOnCompleteListener {
+                                task->
+                                if(task.isSuccessful) {
+                                    Toast.makeText(this, "삭제되었습니다.2", Toast.LENGTH_SHORT).show()
+                                }
+                            }
+                        }
+                    }
+                }
         }
 
         getContentDTO()

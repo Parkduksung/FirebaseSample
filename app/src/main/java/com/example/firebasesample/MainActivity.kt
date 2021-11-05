@@ -164,7 +164,6 @@ class MainActivity : AppCompatActivity() {
                         var userDTO = dc.toObject(UserDTO::class.java)
                         println(userDTO)
                     }
-
                 }
             }
     }
