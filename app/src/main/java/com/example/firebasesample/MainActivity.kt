@@ -38,13 +38,6 @@ class MainActivity : AppCompatActivity() {
 
         firestore = FirebaseFirestore.getInstance()
 
-        addSnapshotDocument()
-
-        Handler(Looper.getMainLooper()).postDelayed({
-            deleteData()
-        }, 2000L)
-
-//        firestore?.collection("User")?.document("document1")?.set(UserDTO("박", "인천", 10))
     }
 
 
