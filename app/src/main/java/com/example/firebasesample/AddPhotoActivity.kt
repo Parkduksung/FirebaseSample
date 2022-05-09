@@ -12,7 +12,7 @@ import androidx.databinding.DataBindingUtil
 import com.example.firebasesample.adapter.PhotoAdapter
 import com.example.firebasesample.databinding.ActivityAddPhotoBinding
 import com.example.firebasesample.model.ContentDTO
-import com.google.firebase.auth.FirebaseAuth
+//import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import java.text.SimpleDateFormat
@@ -26,7 +26,7 @@ class AddPhotoActivity : AppCompatActivity() {
 
     var storage: FirebaseStorage? = null
     var firestore: FirebaseFirestore? = null
-    private var auth: FirebaseAuth? = null
+//    private var auth: FirebaseAuth? = null
 
     private val photoAdapter by lazy { PhotoAdapter() }
 
@@ -43,7 +43,7 @@ class AddPhotoActivity : AppCompatActivity() {
         // Firebase Database
         firestore = FirebaseFirestore.getInstance()
         // Firebase Auth
-        auth = FirebaseAuth.getInstance()
+//        auth = FirebaseAuth.getInstance()
 
 //        val photoPickerIntent = Intent(Intent.ACTION_PICK)
 //        photoPickerIntent.type = "image/*"
@@ -105,7 +105,7 @@ class AddPhotoActivity : AppCompatActivity() {
                 //게시물의 설명
                 contentDTO.explain = binding.addphotoEditExplain.text.toString()
                 //유저의 아이디
-                contentDTO.userId = auth?.currentUser?.email
+//                contentDTO.userId = auth?.currentUser?.email
                 //게시물 업로드 시간
                 contentDTO.timestamp = System.currentTimeMillis()
 
