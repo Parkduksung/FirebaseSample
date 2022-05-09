@@ -1,15 +1,9 @@
 package com.example.firebasesample
 
+
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import com.example.firebase.FirebaseData
-import com.example.firebase.FirebaseRemoteDataSource
-import com.example.firebase.FirebaseRemoteDataSourceImpl
-//import com.google.firebase.auth.EmailAuthProvider
-//import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
 class MainActivity : AppCompatActivity() {
@@ -63,9 +57,9 @@ class MainActivity : AppCompatActivity() {
 //            }
 //        }
 
-        FirebaseRemoteDataSourceImpl().addData("User", UserDTO("박덕성", "인천")) {
-            Log.d("결과", it.toString())
-        }
+//        FirebaseRemoteDataSourceImpl().addData("User", UserDTO("박덕성", "인천")) {
+//            Log.d("결과", it.toString())
+//        }
     }
 
 
@@ -345,5 +339,4 @@ data class UserDTO(
     var name: String? = null,
     var address: String? = null,
     var age: Int? = null
-) :
-    FirebaseData
+)
