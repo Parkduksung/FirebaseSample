@@ -1,4 +1,4 @@
-package com.example.firebasesample.chatlist
+package com.example.firebasesample.ui.chatlist
 
 data class ChatListItem(
     val buyerId: String,

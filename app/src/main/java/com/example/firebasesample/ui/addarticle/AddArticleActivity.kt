@@ -1,4 +1,4 @@
-package com.example.firebasesample.home
+package com.example.firebasesample.ui.addarticle
 
 import android.app.Activity
 import android.app.AlertDialog
@@ -10,8 +10,9 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
-import com.example.firebasesample.DBKey.Companion.DB_ARTICLES
+import com.example.firebasesample.constant.DBKey.Companion.DB_ARTICLES
 import com.example.firebasesample.R
+import com.example.firebasesample.data.model.ArticleModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DatabaseReference
@@ -118,9 +119,6 @@ class AddArticleActivity : AppCompatActivity() {
                     Toast.makeText(this, "저장안됨", Toast.LENGTH_SHORT).show()
                 }
             }
-
-//        hideProgress()
-//        finish()
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {

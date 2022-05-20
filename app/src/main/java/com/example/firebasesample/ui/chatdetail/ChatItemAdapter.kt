@@ -1,4 +1,4 @@
-package com.example.firebasesample.chatdetail
+package com.example.firebasesample.ui.chatdetail
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

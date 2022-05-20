@@ -1,4 +1,4 @@
-package com.example.firebasesample.home
+package com.example.firebasesample.data.model
 
 data class ArticleModel(
     val sellerId: String,

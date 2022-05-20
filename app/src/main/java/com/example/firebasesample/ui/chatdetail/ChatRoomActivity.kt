@@ -1,4 +1,4 @@
-package com.example.firebasesample.chatdetail
+package com.example.firebasesample.ui.chatdetail
 
 import android.os.Bundle
 import android.widget.Button
@@ -6,7 +6,7 @@ import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.firebasesample.DBKey.Companion.DB_CHATS
+import com.example.firebasesample.constant.DBKey.Companion.DB_CHATS
 import com.example.firebasesample.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth

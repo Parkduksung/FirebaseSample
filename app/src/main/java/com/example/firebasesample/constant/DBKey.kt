@@ -1,4 +1,4 @@
-package com.example.firebasesample
+package com.example.firebasesample.constant
 
 class DBKey {
     companion object {

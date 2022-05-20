@@ -1,4 +1,4 @@
-package com.example.firebasesample.mypage
+package com.example.firebasesample.ui.mypage
 
 import android.os.Bundle
 import android.view.View
@@ -39,8 +39,6 @@ class MyPageFragment : Fragment(R.layout.fragment_mypage) {
                                 Toast.makeText(context, "로그인에 실패했습니다. 이메일 또는 비밀번호를 확인해주세요.",Toast.LENGTH_SHORT).show()
                             }
                         }
-
-
                 } else {
                     auth.signOut()
                     binding.emailEditText.text.clear()

@@ -1,4 +1,4 @@
-package com.example.firebasesample.chatdetail
+package com.example.firebasesample.ui.chatdetail
 
 data class ChatItem(
     val senderId: String,
