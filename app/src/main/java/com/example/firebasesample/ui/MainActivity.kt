@@ -9,7 +9,9 @@ import com.example.firebasesample.ext.replaceFragment
 import com.example.firebasesample.ui.chatlist.ChatListFragment
 import com.example.firebasesample.ui.home.HomeFragment
 import com.example.firebasesample.ui.mypage.MyPageFragment
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
