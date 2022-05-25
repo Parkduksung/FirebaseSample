@@ -10,8 +10,9 @@ import com.google.firebase.database.ChildEventListener
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import javax.inject.Inject
 
-class FirebaseRemoteDataSourceImpl : FirebaseRemoteDataSource {
+class FirebaseRemoteDataSourceImpl @Inject constructor() : FirebaseRemoteDataSource {
 
     private var articleDB: DatabaseReference = Firebase.database.reference.child(DBKey.DB_ARTICLES)
     private var userDB: DatabaseReference = Firebase.database.reference.child(DBKey.DB_USERS)
@@ -56,5 +57,9 @@ class FirebaseRemoteDataSourceImpl : FirebaseRemoteDataSource {
 
     override fun setChildEventListener(listener: ChildEventListener) {
         articleDB.addChildEventListener(listener)
+    }
+
+    override fun removeChildEventListener(listener: ChildEventListener) {
+        articleDB.removeEventListener(listener)
     }
 }

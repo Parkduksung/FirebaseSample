@@ -11,6 +11,7 @@ interface FirebaseRemoteDataSource {
     )
 
     fun setChildEventListener(listener : ChildEventListener)
+    fun removeChildEventListener(listener: ChildEventListener)
 
     fun isLoginUser() : Boolean
 }

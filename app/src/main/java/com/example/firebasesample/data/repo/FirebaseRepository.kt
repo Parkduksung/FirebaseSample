@@ -11,7 +11,7 @@ interface FirebaseRepository {
     )
 
     fun setChildEventListener(listener : ChildEventListener)
-
+    fun removeChildEventListener(listener: ChildEventListener)
 
     fun isLoginUser() : Boolean
 }

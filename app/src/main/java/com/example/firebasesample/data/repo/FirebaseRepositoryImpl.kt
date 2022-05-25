@@ -19,4 +19,7 @@ class FirebaseRepositoryImpl @Inject constructor(private val firebaseRemoteDataS
     override fun isLoginUser(): Boolean =
         firebaseRemoteDataSource.isLoginUser()
 
+    override fun removeChildEventListener(listener: ChildEventListener) {
+        firebaseRemoteDataSource.removeChildEventListener(listener)
+    }
 }
