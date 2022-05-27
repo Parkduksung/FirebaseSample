@@ -6,6 +6,7 @@ import android.view.View
 import androidx.fragment.app.viewModels
 import com.example.firebasesample.R
 import com.example.firebasesample.base.BaseFragment
+import com.example.firebasesample.base.ViewState
 import com.example.firebasesample.databinding.FragmentHomeBinding
 import com.example.firebasesample.ui.adapter.ArticleAdapter
 import com.example.firebasesample.ui.addarticle.AddArticleActivity
@@ -30,19 +31,20 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
             homeViewModel.createChatRoom(articleModel)
         })
         binding.articleRecyclerView.adapter = articleAdapter
-
     }
 
 
     private fun initViewModel() {
         binding.viewModel = homeViewModel
 
-        homeViewModel.viewStateLiveData.observe(viewLifecycleOwner) { viewState ->
-            (viewState as? HomeViewState)?.let { onChangedHomeViewState(viewState) }
+        homeViewModel.viewState.observe(viewLifecycleOwner) { viewState ->
+            (viewState as? HomeViewState)?.let {
+                onChangedHomeViewState(viewState)
+            }
         }
     }
 
-    private fun onChangedHomeViewState(viewState: HomeViewState) {
+    private fun onChangedHomeViewState(viewState: ViewState) {
         when (viewState) {
 
             is HomeViewState.GetArticleList -> {

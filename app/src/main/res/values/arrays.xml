@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <array name="array_name">
+        <item>홈</item>
+        <item>채팅</item>
+        <item>나의 정보</item>
+    </array>
+
+    <array name="array_tab_icon">
+        <item>@drawable/ic_baseline_home_24</item>
+        <item>@drawable/ic_baseline_chat_24</item>
+        <item>@drawable/ic_baseline_person_pin_24</item>
+    </array>
+
+</resources>

@@ -3,7 +3,6 @@ package com.example.firebasesample.data.source
 import com.example.firebasesample.constant.DBKey
 import com.example.firebasesample.data.model.ArticleModel
 import com.example.firebasesample.ui.chatlist.ChatListItem
-import com.example.firebasesample.ui.home.HomeViewState
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.ChildEventListener
