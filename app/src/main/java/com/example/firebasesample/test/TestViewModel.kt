@@ -7,13 +7,18 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.toObject
+import com.google.gson.Gson
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.JsonArray
 import kotlinx.serialization.json.decodeFromStream
+import org.json.JSONArray
+import org.json.JSONObject
 import javax.inject.Inject
 import kotlin.reflect.KClass
+import kotlin.system.measureTimeMillis
 
 @HiltViewModel
 class TestViewModel @Inject constructor(app: Application) : BaseViewModel(app) {
@@ -29,95 +34,58 @@ class TestViewModel @Inject constructor(app: Application) : BaseViewModel(app) {
             store.collection("test1").document("test1")
 
 
+        //set
+//        testStore.set(emptyMap<String,Person>())
+
+        //update
+//        testStore.update("list", FieldValue.arrayUnion(Person("asdf", 1), Person("as", 2)))
+
+
+        //get all style1
 //        testStore.get().addOnSuccessListener {
 //
-//            val t = it["list"] as ArrayList<Map<String, Any>>
+//            val getTime = measureTimeMillis {
 //
-//            t.forEach {
+//                val list = it["list"] as ArrayList<Map<String, Any>>
 //
+//                list.forEach {
+//                    Log.d("결과", mapToObject(it, Person::class).toString())
+//                }
 //
 //            }
-////            t.forEach {
-////               Log.d("결과", mapToObject(it,Person::class).toString())
-////            }
 //
+//            Log.d("결과", getTime.toString())
 //        }
 
-        testStore.update("list", FieldValue.arrayUnion())
 
-//        testStore.update(FieldValue.arrayUnion())
-//        val updates = hashMapOf<String, Any>(
-//            "list" to FieldValue.delete()
-//        )
+        //get all style2
+//        testStore.get().addOnSuccessListener {
 //
-//        testStore.update(updates)
+//            val getTime = measureTimeMillis {
+//                val list = it["list"] as ArrayList<Map<String, Any>>
 //
-
-//            .get().addOnSuccessListener {
+//                val convertList = list.map { Person.from(it) }
 //
-//
-//                val t = it["list"] as ArrayList<Map<String, String>>
-//
-//                val q = t.map { Person.from(it) }
-//                q.forEach {
+//                convertList.forEach {
 //                    Log.d("결과", it.toString())
 //                }
-
-//                t.map { it.keys }.forEach {
-//                    Log.d("결과", it.toString())
-//                }
-//
-//                t.forEach {
-//                    Log.d("결과", it.toString())
-//                }
-//
-//                Log.d("결과", t.size.toString())
-//
-//                val map = mapOf(
-//                    "name" to "Tom Hanley",
-//                    "age" to 99
-//                )
-//
-//                Log.d("결과", map.toString())
-
-//            }
-
-//            it["list"] as ArrayList<ArrayList<Person>>
-
-//            Log.d("결과", (it["list"] as ArrayList<ArrayList<Person>>).toString())
-//
-//            (it["list"] as ArrayList<Person>).forEach {
-//                Log.d("결과",it.toString())
 //            }
 //
-
-
-//            Log.d("결과", t.toString())
-
-//            Log.d("결과", t?.javaClass.toString())
-//            Log.d("결과", t?.javaClass?.name.toString())
-//            Log.d("결과", t?.javaClass?.typeName.toString())
-//
-//            t?.forEach {
-//                Log.d("결과", it.javaClass.toString())
-//                Log.d("결과", it.javaClass.name.toString())
-//                Log.d("결과", it.javaClass.typeName.toString())
-//            }
-
+//            Log.d("결과", getTime.toString())
 //        }
+
+        //get all style3
+//        testStore.get().addOnSuccessListener { result ->
 //
+//            val getTime = measureTimeMillis {
+//                val list = result.toObject(PersonEntryDoc::class.java)?.list
 //
-//            testStore
-//                .update("list", FieldValue.arrayUnion(Person("성",30), Person("a",1234)))
-//            .addOnCompleteListener {
-//                Log.d("결과", "addOnCompleteListener")
+//                list?.forEach {
+//                    Log.d("결과", it.toString())
+//                }
 //            }
-//            .addOnSuccessListener {
-//                Log.d("결과", "addOnSuccessListener")
-//            }
-//            .addOnFailureListener {
-//                Log.d("결과", "addOnFailureListener")
-//            }
+//            Log.d("결과", getTime.toString())
+//        }
     }
 
     fun register() {
@@ -153,11 +121,12 @@ class TestViewModel @Inject constructor(app: Application) : BaseViewModel(app) {
 //    )
 }
 
-data class Person(val name: String, val age: Int) {
+@Serializable
+data class Person(val name: String = "", val age: Long = -1) {
     companion object {
         fun from(map: Map<String, Any>) = object {
             val name: String by map
-            val age: Int by map
+            val age: Long by map
 
             val data = Person(name, age)
         }.data
@@ -169,11 +138,12 @@ fun <T : Any> mapToObject(map: Map<String, Any>, clazz: KClass<T>): T {
     val constructor = clazz.constructors.first()
 
     //Map constructor parameters to map values
-    val args = constructor
-        .parameters
-        .map { it to map.get(it.name) }
-        .toMap()
+    val args = constructor.parameters.associateWith { map[it.name] }
 
     //return object from constructor call
     return constructor.callBy(args)
 }
+
+data class PersonEntryDoc(
+    var list: MutableList<Person>? = null
+)
