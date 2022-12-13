@@ -30,9 +30,82 @@ class TestViewModel @Inject constructor(app: Application) : BaseViewModel(app) {
     fun test() {
 
 
-        val testStore =
-            store.collection("test1").document("test1")
+//        val testStore =
+//            store.collection("test1").document("test1")
 
+//        val citiesRef = store.collection("cities")
+//
+//        val ggbData = mapOf(
+//            "name" to "Golden Gate Bridge",
+//            "type" to "bridge"
+//        )
+//        citiesRef.document("SF").collection("landmarks").add(ggbData)
+//
+//        val lohData = mapOf(
+//            "name" to "Legion of Honor",
+//            "type" to "museum"
+//        )
+//        citiesRef.document("SF").collection("landmarks").add(lohData)
+//
+//        val gpData = mapOf(
+//            "name" to "Griffth Park",
+//            "type" to "park"
+//        )
+//        citiesRef.document("LA").collection("landmarks").add(gpData)
+//
+//        val tgData = mapOf(
+//            "name" to "The Getty",
+//            "type" to "museum"
+//        )
+//        citiesRef.document("LA").collection("landmarks").add(tgData)
+//
+//        val lmData = mapOf(
+//            "name" to "Lincoln Memorial",
+//            "type" to "memorial"
+//        )
+//        citiesRef.document("DC").collection("landmarks").add(lmData)
+//
+//        val nasaData = mapOf(
+//            "name" to "National Air and Space Museum",
+//            "type" to "museum"
+//        )
+//        citiesRef.document("DC").collection("landmarks").add(nasaData)
+//
+//        val upData = mapOf(
+//            "name" to "Ueno Park",
+//            "type" to "park"
+//        )
+//        citiesRef.document("TOK").collection("landmarks").add(upData)
+//
+//        val nmData = mapOf(
+//            "name" to "National Musuem of Nature and Science",
+//            "type" to "museum"
+//        )
+//        citiesRef.document("TOK").collection("landmarks").add(nmData)
+//
+//        val jpData = mapOf(
+//            "name" to "Jingshan Park",
+//            "type" to "park"
+//        )
+//        citiesRef.document("BJ").collection("landmarks").add(jpData)
+//
+//        val baoData = mapOf(
+//            "name" to "Beijing Ancient Observatory",
+//            "type" to "musuem"
+//        )
+//        citiesRef.document("BJ").collection("landmarks").add(baoData)
+
+//        store.collectionGroup("landmarks").get().addOnSuccessListener {
+//            //전체 가져오기.
+//            it.documents.forEach {
+//                Log.d("결과",it.data.toString() )
+//            }
+//        }
+//
+//        store.collectionGroup("landmarks").whereEqualTo("type", "museum").get()
+//            .addOnSuccessListener { queryDocumentSnapshots ->
+//                Log.d("결과",queryDocumentSnapshots.toString())
+//            }
 
         //set
 //        testStore.set(emptyMap<String,Person>())
@@ -59,6 +132,7 @@ class TestViewModel @Inject constructor(app: Application) : BaseViewModel(app) {
 
 
         //get all style2
+        //23초
 //        testStore.get().addOnSuccessListener {
 //
 //            val getTime = measureTimeMillis {
@@ -122,7 +196,7 @@ class TestViewModel @Inject constructor(app: Application) : BaseViewModel(app) {
 }
 
 @Serializable
-data class Person(val name: String = "", val age: Long = -1) {
+data class Person(val name: String? = "", val age: Long? = -1) {
     companion object {
         fun from(map: Map<String, Any>) = object {
             val name: String by map
