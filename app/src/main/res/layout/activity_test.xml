@@ -12,5 +12,15 @@
         android:layout_height="match_parent"
         tools:context=".test.TestActivity">
 
+        <Button
+            android:id="@+id/button_get_token"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="getToken"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
